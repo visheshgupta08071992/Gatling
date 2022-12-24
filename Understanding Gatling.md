@@ -46,6 +46,30 @@ There are two ways to use Gatling -
 
 10.Run scripts using gatling.bat and check reports.
 
+11.Results gets stored within Gatling folder -> result.
+
+
+## Using Gatling with Build Tool
+
+1.Prerequisite here is Java(JDK),Scala,BuildTool(Maven,Gradle),IDE(Intellij,Eclipse)
+
+2.Download Scala zip file from https://github.com/lampepfl/dotty/releases/tag/3.1.0
+
+3.Unzip the scala zip and the bin folder path of scala to Envionment Path Variable.
+
+4.Open CMD and check whether is installed using command scala -version
+
+5.Ensure Maven is installed using command **mvn -v** 
+
+6.Install Scala Plugin within Intellij.
+
+7.Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
+
+
+
+
+
+
 
 
 
