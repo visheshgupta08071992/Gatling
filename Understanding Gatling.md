@@ -59,6 +59,8 @@ There are two ways to use Gatling -
 
 4.Open CMD and check whether is installed using command scala -version
 
+5.Also add Gatlings bin path(C:\VisheshProjects\gatling-charts-highcharts-bundle-3.9.0-bundle\gatling-charts-highcharts-bundle-3.9.0\bin ) to Environment Path Variable
+
 5.Ensure Maven is installed using command **mvn -v** 
 
 6.Install Scala Plugin within Intellij.
