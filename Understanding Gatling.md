@@ -83,7 +83,16 @@ There are two ways to use Gatling -
    
 7.Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
 
-## Setting up Gatling Performance Testing Framework
+**Scala Understandings**
+
+```js
+
+1.In Scala _ means all files. It is similar to * in Java.
+2.Variable in scala is declared using val keyword.
+
+```
+
+## Understanding Gatling Performance Testing Script Creation
 
 1.Its best to store all performance simulations within Simulation Folder. All the Gatling Scala Simulation files should import below packages and must extend
 Simulation Class
@@ -96,7 +105,37 @@ import io.gatling.http.Predef._
 
 ```
 
-In Scala _ means all files. It is similar to * in Java.
+2. A normal gatling performance testing script can be divided into three parts -
+
+**Http Request Configuration**
+
+```js
+
+ val httpConf = http.baseUrl("https://reqres.in/")
+    .header("Accept",value = "application/json")
+    .header("content-type",value="application/json")
+
+```
+
+**Scenario Creation**
+
+```js
+ val scn= scenario("Get User")
+    .exec(http("Get User Request")
+      .get("api/users/2")
+      .check(status is 200))
+```
+
+**Setting up the Scenario to be executed against no of Users**
+
+```js
+setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
+```
+
+![image](https://user-images.githubusercontent.com/52998083/209545876-19df3b7f-ca0f-421d-8360-907bdfa6b951.png)
+
+
+
 
 
 
