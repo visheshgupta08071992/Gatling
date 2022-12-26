@@ -67,25 +67,26 @@ There are two ways to use Gatling -
 
 7.To Create a Gatling Maven Project having Gatling maven project structure follow the below steps</br>
 
-   **->** Create a new maven Project</br>
-   **->** To get the Gatling maven project structure click on checkbox **Create from archetype** and then click on button **Add Archetype** </br>
+
+   ```js
+   1.Create a new maven Project.
+   2.To get the Gatling maven project structure click on checkbox Create from archetype and then click on button Add Archetype.   
+   3.You can get the Gatling Project archetype by searching io.gatling.highcharts maven archetype on google(https://mvnrepository.com/artifact/io.gatling.highcharts/gatling-highcharts-maven-archetype) </br>  
+   4.Add the Arcytype value as shown in below screenshot
+   5.Provide name, artifactid,groupid for your project and click on finish.
+   ```
    
    ![image](https://user-images.githubusercontent.com/52998083/209459224-88012d8a-730f-4cd0-ad7a-91540cad8a62.png)
    
-   **->** You can get the Gatling Project archetype by searching io.gatling.highcharts maven archetype on google(https://mvnrepository.com/artifact/io.gatling.highcharts/gatling-highcharts-maven-archetype) </br>
-   
-   **->** Add the Arcytype value as shown in below screenshot
-   
    ![image](https://user-images.githubusercontent.com/52998083/209459275-e6b074fe-53bb-4e1f-911d-781a31edad10.png)
-   
-   **->** Provide name, artifactid,groupid for your project and click on finish,
 
 
    
    
    
-
 7.Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
+
+
 
 
 
