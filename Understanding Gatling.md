@@ -119,11 +119,24 @@ import io.gatling.http.Predef._
 
 **Scenario Creation**
 
+**Get Request**
+
 ```js
  val scn= scenario("Get User")
     .exec(http("Get User Request")
       .get("api/users/2")
       .check(status is 200))
+```
+
+**Post Request**
+
+```js
+val scn = scenario("Add User")
+    .exec(http("Add User Request").post("/api/users")
+      .body(RawFileBody("./src/test/resources/bodies/AddUser.json")).asJson
+      .header("content-type",value="application/json")
+      .check(status is 201))
+
 ```
 
 **Setting up the Scenario to be executed against no of Users**
@@ -133,6 +146,9 @@ setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
 ```
 
 ![image](https://user-images.githubusercontent.com/52998083/209545876-19df3b7f-ca0f-421d-8360-907bdfa6b951.png)
+
+![image](https://user-images.githubusercontent.com/52998083/209551673-1d58524f-886c-489c-82e1-879289b3e133.png)
+
 
 
 
