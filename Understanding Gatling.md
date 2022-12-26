@@ -139,6 +139,26 @@ val scn = scenario("Add User")
 
 ```
 
+**Request Chaining**
+
+we can chain the request with the help of pause and again executing another request with exec command
+
+```js
+  val scn = scenario("Add User and Then Get users")
+    .exec(http("Add User Request").post("/api/users")
+      .body(RawFileBody("./src/test/resources/bodies/AddUser.json")).asJson
+      .header("content-type",value="application/json")
+      .check(status is 201))
+      .pause(3)
+
+    .exec(http("Get User").get("/api/users/2").check(status is 200))
+    .pause(2)
+
+    .exec(http("Get All Users").get("/api/users?page=2").check(status is 200))
+
+```
+
+
 **Setting up the Scenario to be executed against no of Users**
 
 ```js
@@ -148,6 +168,29 @@ setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
 ![image](https://user-images.githubusercontent.com/52998083/209545876-19df3b7f-ca0f-421d-8360-907bdfa6b951.png)
 
 ![image](https://user-images.githubusercontent.com/52998083/209551673-1d58524f-886c-489c-82e1-879289b3e133.png)
+
+
+**Understanding check and pause**
+
+1. **Diffirent ways of checking status**
+
+```js
+
+1.status is 201
+2.status.is(200)
+3.status.not(400)
+```
+
+2. **Different ways of Pausing**
+
+```js
+1.pause(3) -> Would pause for 3 seconds
+2.pause(1,10) -> Would pause between 1 to 10 seconds
+3.pause(3000.milliseconds) -> Would pause for 3000 millisecond. For this we need to import package import scala.concurrent.duration.DurationInt
+
+```
+
+
 
 
 
