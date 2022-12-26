@@ -79,12 +79,24 @@ There are two ways to use Gatling -
    ![image](https://user-images.githubusercontent.com/52998083/209459224-88012d8a-730f-4cd0-ad7a-91540cad8a62.png)
    
    ![image](https://user-images.githubusercontent.com/52998083/209459275-e6b074fe-53bb-4e1f-911d-781a31edad10.png)
-
-
-   
    
    
 7.Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
+
+## Setting up Gatling Performance Testing Framework
+
+1.Its best to store all performance simulations within Simulation Folder. All the Gatling Scala Simulation files should import below packages and must extend
+Simulation Class
+
+```js
+
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+
+```
+
+In Scala _ means all files. It is similar to * in Java.
 
 
 
