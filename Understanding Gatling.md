@@ -94,6 +94,12 @@ There are two ways to use Gatling -
 
 1.In Scala _ means all files. It is similar to * in Java.
 2.Variable in scala is declared using val keyword.
+3.A function in scala is created using def keyword.
+   
+   def functionName ([list of parameters]) : [return type] = {
+   function body
+   return [expr]
+}
 
 ```
 
