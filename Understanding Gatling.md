@@ -394,6 +394,17 @@ val httpConf = http.baseUrl("https://gorest.co.in/")
 
 ```
 
+**Understanding Load Simulation with Gatling**
+
+```js
+
+setUp(scn.inject(nothingFor(5), // will do nothing for 5 second
+    atOnceUsers(10), // would add 10 users at once
+    rampUsers(10000) during(10 seconds)) // would add 10000 users in next 10 sec, For seocnds we have imported import scala.concurrent.duration._  and
+ // import scala.language.postfixOps packages
+    .protocols(httpConf))
+```
+
 
 
 ### Referances
