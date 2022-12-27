@@ -396,6 +396,11 @@ val httpConf = http.baseUrl("https://gorest.co.in/")
 
 
 
+### Referances
+
+1.Best refrance - https://devqa.io/tag/gatling/
+2.Naveen Automation Labs - https://www.youtube.com/watch?v=07vhobDuNWU&list=PLFGoYjJG_fqpwTGqK7GKWW7z10jF1G3qw
+
 
 
 
