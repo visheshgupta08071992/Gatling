@@ -354,44 +354,6 @@ In Gatling You can create generic method for each request and you can call them 
 **Gatling Looping Calls**</br>
 Gatling provides very important feature called as Repeat to execute the request multiple times
 
-```js
-
-val httpConf = http.baseUrl("https://reqres.in/")
-    .header("Accept",value = "application/json")
-    .header("content-type",value="application/json")
-
-  def getAllUsersRequest():ChainBuilder ={
-    exec(http("Get All Users request").get("/api/users?page=2").check(status is 200))
-  }
-
-  def getSingleUserRequest():ChainBuilder ={
-    exec(http("Get User").get("/api/users/2").check(status is 200))
-  }
-
-  def addNewUser():ChainBuilder = {
-    exec(http("Add User Request").post("/api/users")
-      .body(RawFileBody("./src/test/resources/bodies/AddUser.json")).asJson
-      .header("content-type",value="application/json")
-      .check(status is 201))
-  }
-
-  val scn= scenario("User Request Scenarios")
-    .exec(repeat(2){
-      getAllUsersRequest()   // Get All User Request would be repeated twice
-    })
-    .pause(2)
-    .exec(repeat(2){
-      getSingleUserRequest()  // Get Single User Request would be repeated twice
-    })
-    .pause(2)
-    .exec(repeat(1){          // Add User request would be executed once
-      addNewUser()
-    })
-
-  setUp(scn.inject(atOnceUsers(1))).protocols(httpConf)
-
-```
-
 
 
 
