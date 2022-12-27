@@ -365,6 +365,8 @@ userid,name
 5256,Dulari Deshpande
 ```
 
+CSV file can be read in 4 differnt ways like circular,shuffle,random,queue.
+
 **Sample code to read from csv file**
 
 ```js
