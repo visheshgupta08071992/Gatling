@@ -354,6 +354,44 @@ In Gatling You can create generic method for each request and you can call them 
 **Gatling Looping Calls**</br>
 Gatling provides very important feature called as Repeat to execute the request multiple times
 
+**Read Data from external csv using Gatling**
+
+**Sample CSV File**
+
+```js
+userid,name
+5254,Ekdant Bharadwaj
+5255,Ramaa Joshi
+5256,Dulari Deshpande
+```
+
+**Sample code to read from csv file**
+
+```js
+val httpConf = http.baseUrl("https://gorest.co.in/")
+    .header("Authorization",value = "Bearer 395d0049d1c794ec1232dadb5c645ee71c8e8bfdd40b51eb3142a90ea29897f9")
+
+  //circular,shuffle,random,queue
+  val csvFeeder=csv("./src/test/resources/data/getUser.csv").circular
+
+  def getUser():ChainBuilder={
+    repeat(3) //Repeat Request thrice
+    {
+      feed(csvFeeder) // Feeder for the request
+        .exec(http("Get single user request").get("public-api/users/${userid}")
+          .check(jsonPath("$.data.name").is("${name}"))
+          .check(status is 200))
+          .pause(2)
+    }
+  }
+
+  val scn=scenario("Data Feder scenario")
+    .exec(getUser())
+
+  setUp(scn.inject(atOnceUsers(1))).protocols(httpConf)
+
+```
+
 
 
 
