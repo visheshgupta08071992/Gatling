@@ -175,9 +175,121 @@ setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
 ![image](https://user-images.githubusercontent.com/52998083/209551673-1d58524f-886c-489c-82e1-879289b3e133.png)
 
 
-**Understanding check and pause**
+**Understanding check**
 
-1. **Diffirent ways of checking status**
+check is used for assertions as well as for extracting data from API response. check uses jsonpath to extract data from API response.
+
+**Response**
+
+```js
+
+{
+  "code": 200,
+  "meta": {
+    "pagination": {
+      "total": 5015,
+      "pages": 502,
+      "page": 1,
+      "limit": 10
+    }
+  },
+  "data": [
+    {
+      "id": 5298,
+      "name": "Amish Bhattacharya",
+      "email": "amish_bhattacharya@reynolds.net",
+      "gender": "male",
+      "status": "active"
+    },
+    {
+      "id": 5297,
+      "name": "Dwaipayana Singh",
+      "email": "dwaipayana_singh@smith.info",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 5295,
+      "name": "Mr. Suryakanta Varman",
+      "email": "mr_suryakanta_varman@gutkowski-weissnat.biz",
+      "gender": "male",
+      "status": "active"
+    },
+    {
+      "id": 5293,
+      "name": "Aatmaja Varma",
+      "email": "varma_aatmaja@reilly-windler.info",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 5292,
+      "name": "Pres. Amish Namboothiri",
+      "email": "amish_pres_namboothiri@schuppe.biz",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 5291,
+      "name": "Paramartha Shah",
+      "email": "paramartha_shah@bergstrom-quigley.com",
+      "gender": "male",
+      "status": "active"
+    },
+    {
+      "id": 5290,
+      "name": "The Hon. Jay Dutta",
+      "email": "jay_the_dutta_hon@vandervort.name",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 5289,
+      "name": "Aaratrika Varman",
+      "email": "aaratrika_varman@beier.name",
+      "gender": "female",
+      "status": "active"
+    },
+    {
+      "id": 5288,
+      "name": "Sarla Pilla",
+      "email": "sarla_pilla@feil.biz",
+      "gender": "male",
+      "status": "inactive"
+    },
+    {
+      "id": 5287,
+      "name": "Dhanalakshmi Desai PhD",
+      "email": "phd_desai_dhanalakshmi@cremin.info",
+      "gender": "male",
+      "status": "active"
+    }
+  ]
+}
+
+```
+
+**Syntax for extracting and validating data using check**
+
+```js
+val scn = scenario("Check Correlation and extract data")
+    //First Call -Get All Users
+    .exec(http("Get all Users Request").get("public-api/users")
+      .check(jsonPath("$.data[0].id").saveAs("userId"))   // extracts id and saves it as userId
+      .check(status is 200))
+    .pause(3)
+
+    //Second API - Get a specific user on the basis of id
+    .exec(http("Get Specific User Request").get("public-api/users/${userId}") //  Saved userId is passed
+    .check(jsonPath("$.data.id").is("5298"))  // validiting id
+    .check(jsonPath("$.data.name").is("Amish Bhattacharya"))) // validating name
+```
+
+
+
+
+
+**Diffirent ways of checking status**
 
 ```js
 
@@ -186,7 +298,11 @@ setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
 3.status.not(400)
 ```
 
-2. **Different ways of Pausing**
+
+**Understanding pause**
+Pause as the name suggests is used for pausing the execution of your script.
+
+**Different ways of Pausing**
 
 ```js
 1.pause(3) -> Would pause for 3 seconds
