@@ -81,7 +81,12 @@ There are two ways to use Gatling -
    ![image](https://user-images.githubusercontent.com/52998083/209459275-e6b074fe-53bb-4e1f-911d-781a31edad10.png)
    
    
-7.Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
+7.Or Alternatively you can also Clone and download sample scala project from https://github.com/gatling/gatling-tutorial
+
+8.Once Gatling project is created, It is required to provide Scala SDK path to Intellij. You can provide the Scala SDK path by navigating to File -> ProjectStructure -> Platform Settings -> Global Libraries. In the given path you can provide the path of lib directory for the scala software which you have downloaded. Or Alternatively you can also provide the path of lib directly of Gatling High Charts which is used as Standalone software.
+
+![image](https://user-images.githubusercontent.com/52998083/209614355-ce4199b8-b0db-4c04-baae-c341ee2f317e.png)
+
 
 **Scala Understandings**
 
