@@ -317,6 +317,9 @@ Pause as the name suggests is used for pausing the execution of your script.
 
 ```
 
+**Code Reuse in Gatling with Methods and Looping Calls**
+Gatling provides very important feature called as Repeat, You can create generic method for each request and you can call them with repeat.
+
 
 
 
