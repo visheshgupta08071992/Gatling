@@ -307,6 +307,25 @@ val scn = scenario("Check Correlation and extract data")
     .check(jsonPath("$.data.name").is("Amish Bhattacharya"))) // validating name
 ```
 
+**Syntax for extracting complete response and using the response in following request**
+
+```js
+val scn = scenario("Add User and Then Get users")
+    .exec(http("Add User Request 1").post("/api/users")
+      .body(RawFileBody("./src/test/resources/bodies/AddUser.json")).asJson
+      .header("content-type",value="application/json")
+      .check(bodyString.saveAs("ResponseBody"))) // Saving complete response in ResponseBody Variable
+      .pause(3)
+
+    .exec(http("Add User Request 2")
+      .post("/api/users")
+      .body(StringBody("${ResponseBody}"))  // Sending Response saved in ResponseBody Variable
+      .check(jsonPath("$.job").is("leader"))
+      .check(status is 201))
+
+```
+
+
 
 
 
