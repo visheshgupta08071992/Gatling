@@ -486,6 +486,7 @@ setUp(scn.inject(nothingFor(5), // will do nothing for 5 second
 
 1.Best refrance - https://devqa.io/tag/gatling/ </br>
 2.Naveen Automation Labs - https://www.youtube.com/watch?v=07vhobDuNWU&list=PLFGoYjJG_fqpwTGqK7GKWW7z10jF1G3qw
+3.Repo of all Practise Scenarios - https://github.com/visheshgupta08071992/GatlingPerformanceTestingPractise/tree/master
 
 
 
