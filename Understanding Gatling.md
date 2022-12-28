@@ -141,11 +141,27 @@ import io.gatling.http.Predef._
 
 **Post Request**
 
+**Reading Json from extenrnal file**
+
 ```js
 val scn = scenario("Add User")
     .exec(http("Add User Request").post("/api/users")
       .body(RawFileBody("./src/test/resources/bodies/AddUser.json")).asJson
       .header("content-type",value="application/json")
+      .check(status is 201))
+
+```
+
+**Passing Json as String**
+
+we can pass the Json within the StringBody function within body.
+
+```js
+ val scn = scenario("Add User using StringBody")
+    .exec(http("Add User Request 2")
+      .post("/api/users")
+      .body(StringBody("{\n  \"name\": \"morpheus\",\n  \"job\": \"leader\"\n}"))
+      .check(jsonPath("$.job").is("leader"))
       .check(status is 201))
 
 ```
