@@ -101,6 +101,10 @@ There are two ways to use Gatling -
    return [expr]
 }
 
+4.Function to Generate Random String of desired length in Scala
+  
+  def randomString(length: Int) = scala.util.Random.alphanumeric.filter(_.isLetter).take(length).mkString
+
 ```
 
 ## Understanding Gatling Performance Testing Script Creation
@@ -163,6 +167,31 @@ we can pass the Json within the StringBody function within body.
       .body(StringBody("{\n  \"name\": \"morpheus\",\n  \"job\": \"leader\"\n}"))
       .check(jsonPath("$.job").is("leader"))
       .check(status is 201))
+
+```
+
+**Passing Dynamic data to Json String Body in Post Request**
+
+```js
+val httpConf = http.baseUrl("https://reqres.in/")
+    .header("Accept",value = "application/json")
+    .header("content-type",value="application/json")
+
+  //Function to Generate Random String of desired length in Scala
+  def randomString(length: Int) = scala.util.Random.alphanumeric.filter(_.isLetter).take(length).mkString
+
+  def addUser() : ChainBuilder ={
+    repeat(5){
+      exec(http("Add User Request 2")
+        .post("/api/users")
+        .body(StringBody(s"{\n  \"name\": \"${randomString(6)}\",\n  \"job\": \"leader\"\n}")) //dynamic value of length as 6 would sent as name using created random string function
+        .check(status is 201))
+    }
+  }
+
+  val scn = scenario("Add User using StringBody")
+    .exec(addUser())
+
 
 ```
 
