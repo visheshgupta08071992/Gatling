@@ -480,6 +480,77 @@ setUp(scn.inject(nothingFor(5), // will do nothing for 5 second
 
 ```
 
+### Understanding Session in Gatling
+
+ # Session in Gatling
+
+In Gatling, Session represents the state of a virtual user. It is a map of string attributes that you can set, get and remove.
+
+Session allows you to inject data into your virtual users and retrieve that data programmatically during the test. This makes your test more realistic by ensuring that virtual users don't use the same data.
+
+## Setting attributes
+
+You can set attributes in the Session using the `set()` and `setAll()` methods:
+
+```scala
+val newSession1 = session.set("key", "value")
+
+val newSession2 = session.setAll(Map("key1" -> "value1", "key2" -> "value2"))
+```
+
+You can also remove attributes using `remove()` and `removeAll()`:
+
+```scala 
+val newSession3 = session.remove("key")
+
+val newSession4 = session.removeAll("key1", "key2")
+```
+
+Remember that `Session` is immutable, so these methods return a new `Session` instance with the changes.
+
+## Getting attributes
+
+You can retrieve attributes and cast them to the appropriate type:
+
+```scala
+val string = session.getString("key")
+
+val int = session.getInt("key")
+
+val list = session.getList("key")
+```
+
+You can check if an attribute exists using `contains()`:
+
+```scala
+val exists = session.contains("key")
+```
+
+## Example
+
+Here is an example of setting and using a Session attribute:
+
+```scala
+exec(session => {
+  session.set("username", "john")  
+})
+.exec(http("request")
+  .get("/user/${username}")
+  ..body(ElFileBody("./src/test/resources/bodies/AddUser.json")) 
+)
+```
+
+```json
+{
+  "userName":"${username}"
+}
+```
+
+Here we set the `username` attribute to "john", then use it in the Gatling Expression Language in the HTTP request.
+
+Session allows you to inject dynamic data into your virtual users and make your load test more realistic. Becasue of Session we could also dynamically pass values in request payload.
+
+Hope this explanation of Session in Gatling was helpful! Let me know if you have any other questions.
 
 
 ### Referances
