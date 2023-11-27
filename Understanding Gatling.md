@@ -552,6 +552,8 @@ Session allows you to inject dynamic data into your virtual users and make your 
 
 Hope this explanation of Session in Gatling was helpful! Let me know if you have any other questions.
 
+**Session Concept is used in Advance Framework** - https://github.com/visheshgupta08071992/GatlingTestPerformanceFramework-Advance
+
 
 ### Referances
 
